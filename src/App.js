@@ -13,16 +13,16 @@ export default function App() {
     'garin',
   ]);
 
+  const usersDisplay = users
+    .filter((user) => user.includes(searchValue))
+    .map((user) => <p>{user}</p>);
+
   return (
     <div className="App">
       <h1>Users List</h1>
       <h2>Search for your favourite user!</h2>
       <Search searchValue={searchValue} setSearchValue={setSearchValue} />
-      {users
-        .filter((user) => user.includes(searchValue))
-        .map((user) => (
-          <p>{user}</p>
-        ))}
+      {usersDisplay.length === 0 ? <p>Sorry no results ...</p> : usersDisplay}
     </div>
   );
 }
